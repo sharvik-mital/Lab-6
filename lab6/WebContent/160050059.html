@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<style>
+
+table,th,td {
+
+  border : 1px solid black;
+
+  border-collapse: collapse;
+
+}
+
+th,td {
+
+  padding: 5px;
+
+}
+
+</style>
+
+<body>
+
+
+<h2>The XMLHttpRequest Object</h2>
+
+
+<form action=""> 
+
+<select name="customers" onchange="showCustomer(this.value)">
+
+<option value="">Select a customer:</option>
+
+<option value="p1">Person 1</option>
+
+<option value="p2">Person 2</option>
+<option value="p3">Person 3</option>
+<option value="p4">Person 4</option>
+<option value="p5">Person 5</option>
+<option value="p6">Person 6</option>
+<option value="p7">Person 7</option>
+</select>
+
+</form>
+
+<br>
+
+<div id="txtHint">Customer info will be listed here...</div>
+
+
+<script>
+
+function showCustomer(str) {
+
+  var xhttp;    
+
+  if (str == "") {
+
+    document.getElementById("txtHint").innerHTML = "";
+
+    return;
+
+  }
+
+  xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+
+    if (this.readyState == 4 && this.status == 200) {
+		
+    	var myObj = JSON.parse(this.responseText);
+    	txt = "<table>";
+    	var x = myObj.data;
+    	for(y in x){
+    		txt += "<tr>";
+    		var z=myObj.data[y];
+    		txt+="<td>"+z.uid+"</td>";
+    		txt+="<td>"+z.text+"</td>";
+    		txt+="<td>"+z.timestamp+"</td>";
+    		txt+="</tr>";
+    	}
+    	txt+="</table>";
+      document.getElementById("txtHint").innerHTML = txt;
+
+    }
+
+  };
+
+  xhttp.open("GET", "ConversationDetail?other_id="+str, true);
+
+  xhttp.send();
+
+}
+
+</script>
+
+</body>
+
+</html>
