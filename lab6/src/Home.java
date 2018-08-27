@@ -36,14 +36,10 @@ public class Home extends HttpServlet {
 				"	 <script src=\"whatasap_home.js\"></script>" +
 				"</head>" + 
 				"<body>" + 
-				"    <div id=\"content\">" +
-				"	 </div> <br><br>" + 
-				"    <button onclick=\"loadTableAsync()\">Load table data</button><br><br>" +
-				"    <table id=\"usersTable\" class=\"display\">" + 
-				"        <thead>" + 
-				"        <tr> <th>User ID</th> <th>Timestamp</th> <th>Number_of_Messages</th> </tr>" + 
-				"        </thead>" + 
-				"    </table>" + 
+				"    <button onclick=\"loadTableAsync()\">Home</button><br><br>" +
+				"<form ><a href=\"#\" id=\"cc\">Create Conversation</a><br><br></form>"+
+				"    <div id=\"content\">"+ 
+				"	 </div> <br><br>" +
 				"</body>" + 
 				"</html>";
 		response.setContentType("text/html");
