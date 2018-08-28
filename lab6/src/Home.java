@@ -1,10 +1,14 @@
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
  * Servlet implementation class Home
@@ -25,19 +29,24 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String html = "<html><head><title>Sample Ajax Page</title>" + 
 				"    <script src=\"jquery-3.3.1.js\"> </script>" + 
 				"    <script src=\"jquery.dataTables.min.js\"></script>" + 
 				"    <script src=\"jquery-ui.min.js\"></script>" + 
-
+//				"	 <script src=\"jquery.autocomplete.min.js\"></script>"+
 				"    <link rel=\"stylesheet\" href=\"jquery-ui.css\" />" + 
-				"    <link rel=\"stylesheet\" href=\"jquery.dataTables.min.css\"/>" + 
+				"    <link rel=\"stylesheet\" href=\"jquery.dataTables.min.css\"/>"+
+				"	 <link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\r\n" +  
 				
-				"	 <script src=\"whatasap_home.js\"></script>" +
-				"</head>" + 
+				"	 <script src=\"whatasap_home.js\"></script>"
+				
+				+ "</head>" + 
 				"<body>" + 
 				"    <button onclick=\"loadTableAsync()\">Home</button><br><br>" +
-				"<form ><a href=\"#\" id=\"cc\">Create Conversation</a><br><br></form>"+
+				"<form ><a href=\"#\" id=\"cc\">Create Conversation</a><br><br></form>"+ 
+				"	<input type=\"text\" id=\"user_phone_id\" >" + 			
+				
 				"    <div id=\"content\">"+ 
 				"	 </div> <br><br>" +
 				"</body>" + 

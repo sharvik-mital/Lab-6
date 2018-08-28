@@ -5,6 +5,10 @@
 
 var myTable;
 var funct;
+//+"<script>"4
+//var arr={"a","aa","aaaa"};
+
+//+ "</script>"
 $( window ).on( "load", loadTableAsync);
 function setallconversationcontent(){
 	txt="    <table id=\"usersTable1\" class=\"display\">" + 
@@ -20,6 +24,25 @@ function setallconversationcontent(){
 }
 $(document).ready(readycall);
 function readycall() {
+	 var getData = function (request, response) {
+	        $.getJSON(
+	            "AutoCompleteUser?term=" + request.term,	
+	          
+	            function (data) {
+	                response(data);
+	            });
+	    };
+	    
+	$( "#user_phone_id").autocomplete({
+		source: getData,
+		select: function (event,ui) {
+//	        alert('You selected: ' + ui.item.value);
+//			location.href="ConversationDetail?other_id="+ui.item.value;
+			funct.fun.call(ui.item.value);
+	    }
+		});
+
+	
     $('#usersTable1 tbody').on( 'click', 'tr', function () {
     	
     	if ( $(this).hasClass('selected') ) {
