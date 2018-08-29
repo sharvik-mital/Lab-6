@@ -38,7 +38,10 @@ function readycall() {
 		select: function (event,ui) {
 //	        alert('You selected: ' + ui.item.value);
 //			location.href="ConversationDetail?other_id="+ui.item.value;
-			funct.fun.call(ui.item.value);
+//			document.getElementById("user_phone_id").value(ui.item.value);
+			if(!($('#button1').length)){
+				funct.fun.call(ui.item.value);
+			}
 	    }
 		});
 
@@ -63,12 +66,10 @@ function readycall() {
         }        
         funct.fun.call(str);
     });
+   
     $('#cc').on('click',function(){
 //    	e.preventDefault();
-    	txt="<form>"+
-    		"Enter user_id: <input type=\"text\" id= \"ccother_id\">"+
-    	"</form>";
-        txt+="<button onclick=\"createconversation2()\">"+ "Submit" +"</button>";
+        txt="<button id=\"button1\" onclick=\"createconversation2()\">"+ "Submit" +"</button>";
       	document.getElementById("content").innerHTML = txt;
 
     });    
@@ -83,9 +84,17 @@ function readycall() {
 //	});
 }
 function SubmitMessage(){
+	
     str=$("#NewMessageForm").serialize();
     var formData=new FormData(document.forms.NewMessageForm);
     otheruser= formData.get('other_id');
+    var str2=document.getElementById("msgtext").value;
+	if(str2=="")
+		{
+  		funct.fun.call(otheruser);
+  		return 
+		}
+	else{
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
@@ -109,10 +118,10 @@ function SubmitMessage(){
         xhttp.open("POST", "NewMessage", true);
         xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhttp.send(str);
-
+	}
 }
 function createconversation2(){
-    var other_user= document.getElementById("ccother_id").value;
+    var other_user= document.getElementById("user_phone_id").value;
     str="other_id="+other_user;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -160,7 +169,7 @@ funct={
 	          	}
 	          	txt+="</table>";
 	            txt+="<form action=\"\" id=\"NewMessageForm\">"+
-	            "Enter Message: <input type=\"text\" name = \"msg\">"+
+	            "Enter Message: <input id= \"msgtext\"type=\"text\" name = \"msg\">"+
 	            "<input type=\"hidden\" name = \"other_id\" value="+str+">"+
 			    "</form>";	
 			    txt+="<button onclick=\"SubmitMessage()\">"+ "Submit" +"</button>";
