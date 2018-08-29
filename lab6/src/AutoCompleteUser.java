@@ -42,7 +42,7 @@ public class AutoCompleteUser extends HttpServlet {
 		String userid = (String) session.getAttribute("id");
 
 		String start_str = request.getParameter("term");
-		System.out.println(start_str);
+//		System.out.println(start_str);
 		List<List<Object>> res = DbHelper.executeQueryList(query, 
 				new DbHelper.ParamType[] {DbHelper.ParamType.STRING,
 						DbHelper.ParamType.STRING,
@@ -53,8 +53,8 @@ public class AutoCompleteUser extends HttpServlet {
 		int i=0;
 		String result_array="[";
 		int k=(int)(res.size());
-		System.out.println("asd");
-	    System.out.println(res);
+//		System.out.println("asd");
+//	    System.out.println(res);
 		while(i<k) {
 			int j=0;
 			int t=(int)(res.get(i).size());
@@ -78,7 +78,7 @@ public class AutoCompleteUser extends HttpServlet {
 			i=i+1;
 		}
 		result_array+="]";
-		System.out.println(result_array);
+//		System.out.println(result_array);
 		
 		PrintWriter out = response.getWriter();
 		out.print(result_array);
